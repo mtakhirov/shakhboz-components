@@ -5,7 +5,19 @@ const router = createRouter({
   routes: [
     {
       path: "/",
-      component: () => import("@/pages/PHome.vue"),
+      component: () => import("@/layout/Default.vue"),
+      children: [
+        {
+          path: "/input",
+          component: import("@/pages/Input/PInput.vue"),
+          name: "Input",
+        },
+        {
+          path: "/table",
+          component: import("@/pages/Table/PTable.vue"),
+          name: "Table",
+        },
+      ],
     },
   ],
 });

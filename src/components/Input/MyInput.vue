@@ -4,12 +4,12 @@
       {{ text }} <span class="text-[#3392FF]">*</span></label
     >
     <div
-        class="flex items-center border focus-within:border-blue rounded bg-white"
-        :class="{ '!border-red-500': error }"
+      class="flex items-center border focus-within:border-blue rounded bg-white"
+      :class="{ '!border-red-500': error }"
     >
       <slot name="prefix"></slot>
       <input
-          v-bind="{
+        v-bind="{
           placeholder,
           type,
           minlength,
@@ -19,23 +19,21 @@
           disabled,
           readonly,
         }"
-          :value="modelValue"
-          @input="handleInput($event.target?.value)"
-          @focus="emit('focus')"
-          @blur="emit('blur')"
-          @change="emit('change')"
-          class="outline-none border-none w-full py-2 px-3 rounded text-base text-[#555]"
-          :class="inputClass"
+        :value="modelValue"
+        @focus="emit('focus')"
+        @blur="emit('blur')"
+        @input="handleInput($event.target?.value)"
+        @change="emit('change')"
+        class="outline-none border-none w-full py-2 px-3 rounded text-base text-[#555]"
+        :class="`inputClass text-${size}`"
       />
       <slot name="suffix"></slot>
     </div>
   </div>
 </template>
 <script setup lang="ts">
-import { convertCyrillicToLatin, isCyrillic } from "@/utils/constants";
-
 interface Props {
-  modelValue: string;
+  modelValue: string | null;
   type?: string;
   placeholder: string;
   id?: string;
@@ -45,9 +43,10 @@ interface Props {
   readonly?: boolean;
   disabled?: boolean;
   error?: boolean;
-  text: string;
+  text?: string;
   isLatin?: boolean;
   inputClass?: string;
+  size?: "sm" | "md" | "lg" | "xl";
 }
 const props = withDefaults(defineProps<Props>(), {
   type: "text",
@@ -59,11 +58,6 @@ const emit = defineEmits<{
   (e: "change"): void;
 }>();
 const handleInput = (e: string) => {
-  const val = isCyrillic(e);
-  if (val && props.isLatin) {
-    emit("update:modelValue", convertCyrillicToLatin(e));
-  } else {
-    emit("update:modelValue", e);
-  }
+  emit("update:modelValue", e);
 };
 </script>
