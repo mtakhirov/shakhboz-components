@@ -1,12 +1,16 @@
 <template>
-  <CHeader />
-  <div class="grid grid-cols-12">
-    <CSidebar class="col-span-2" />
-    <div class="col-span-8 bg-gray-300 p-[20px]">
-      <RouterView />
-    </div>
-    <div class="col-span-2">
-      <CSubAside />
+  <div class="relative">
+    <CHeader class="sticky z-10" />
+    <div class="grid grid-cols-12">
+      <div class="col-span-2">
+        <CSidebar class="sticky top-[64px]" />
+      </div>
+      <div class="col-span-8 bg-white p-[20px]">
+        <RouterView />
+      </div>
+      <div class="col-span-2">
+        <CSubAside class="sticky top-[64px]" />
+      </div>
     </div>
   </div>
 </template>

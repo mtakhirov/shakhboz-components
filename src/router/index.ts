@@ -13,6 +13,11 @@ const router = createRouter({
           name: "Input",
         },
         {
+          path: "/button",
+          component: import("@/pages/Button/PButton.vue"),
+          name: "Button",
+        },
+        {
           path: "/table",
           component: import("@/pages/Table/PTable.vue"),
           name: "Table",
