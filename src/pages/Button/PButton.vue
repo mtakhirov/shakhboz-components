@@ -51,6 +51,7 @@
     </div>
   </div>
 </template>
+
 <script setup lang="ts">
 import MyButton from "@/components/Button/MyButton.vue";
 import { EnvelopeIcon } from "@heroicons/vue/20/solid";
@@ -116,4 +117,5 @@ onMounted(() => {
   }
 });
 </script>
+
 <style scoped></style>

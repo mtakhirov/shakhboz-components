@@ -1,30 +1,19 @@
-import { createRouter, createWebHistory } from "vue-router";
+import type { RouteRecordRaw } from 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router';
+
+import { baseRoutes } from '@/router/routes';
+
+const routes: RouteRecordRaw[] = [
+  {
+    path: '/',
+    component: () => import('@/layouts/Default.vue'),
+    children: baseRoutes
+  }
+];
 
 const router = createRouter({
   history: createWebHistory(),
-  routes: [
-    {
-      path: "/",
-      component: () => import("@/layout/Default.vue"),
-      children: [
-        {
-          path: "/input",
-          component: import("@/pages/Input/PInput.vue"),
-          name: "Input",
-        },
-        {
-          path: "/button",
-          component: import("@/pages/Button/PButton.vue"),
-          name: "Button",
-        },
-        {
-          path: "/table",
-          component: import("@/pages/Table/PTable.vue"),
-          name: "Table",
-        },
-      ],
-    },
-  ],
+  routes
 });
 
 export default router;
