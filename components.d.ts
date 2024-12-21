@@ -9,11 +9,9 @@ declare module 'vue' {
   export interface GlobalComponents {
     CAside: typeof import('./src/components/Base/CAside.vue')['default']
     CHeader: typeof import('./src/components/Base/CHeader.vue')['default']
-    CSidebar: (typeof import("./src/components/Base/CSidebar.vue"))["default"]
     CSubAside: typeof import('./src/components/Base/CSubAside.vue')['default']
     MyButton: typeof import('./src/components/Button/MyButton.vue')['default']
     MyInput: typeof import('./src/components/Input/MyInput.vue')['default']
-    Mytable: typeof import('./src/components/Table/Mytable.vue')['default']
     MyTable: typeof import('./src/components/Table/MyTable.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
