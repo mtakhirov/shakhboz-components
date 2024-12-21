@@ -10,9 +10,20 @@
         <MyButton type="danger">Danger</MyButton>
         <MyButton type="info">Info</MyButton>
       </div>
-      <pre class="text-sm">
-        <code id="base"></code>
-      </pre>
+
+      <code id="base-block" ref="baseButtonsRef" data-lang="vue">
+        <pre>{{ `
+<template>
+  <div class="flex items-center gap-3 mb-5">
+    <my-button type="black">Black</my-button>
+    <my-button type="primary">Primary</my-button>
+    <my-button type="secondary">Secondary</my-button>
+    <my-button type="danger">Danger</my-button>
+    <my-button type="info">Info</my-button>
+  </div>
+</template>
+          `.trim() }}</pre>
+      </code>
     </div>
     <div>
       <p class="text-xl font-semibold mb-2">Loading</p>
@@ -20,9 +31,19 @@
         <MyButton loading type="black">Black</MyButton>
         <MyButton loading type="primary">Primary</MyButton>
       </div>
-      <pre class="text-sm">
-        <code id="loading"></code>
-      </pre>
+
+      <code id="loading-block" ref="loadingButtonsRef" data-lang="vue">
+        <pre>{{
+          `
+<template>
+  <div class="flex items-center gap-3">
+    <my-button loading type="black">Black</my-button>
+    <my-button loading type="primary">Primary</my-button>
+  </div>
+</template>
+        `.trim()
+        }}</pre>
+      </code>
     </div>
     <div>
       <p class="text-xl font-semibold mb-2">Icon button</p>
@@ -30,9 +51,19 @@
         <MyButton :left-icon="EnvelopeIcon" type="black">Black</MyButton>
         <MyButton :right-icon="EnvelopeIcon" type="primary">Primary</MyButton>
       </div>
-      <pre class="text-sm">
-        <code id="icon"></code>
-      </pre>
+
+      <code id="icon-block" ref="iconButtonsRef" data-lang="vue">
+        <pre>{{
+          `
+<template>
+  <div class="flex items-center gap-3">
+    <my-button :left-icon="EnvelopeIcon" type="black">Black</my-button>
+    <my-button :right-icon="EnvelopeIcon" type="primary">Primary</my-button>
+  </div>
+</template>
+        `.trim()
+        }}</pre>
+      </code>
     </div>
     <div>
       <p class="text-xl font-semibold mb-2">Size</p>
@@ -45,50 +76,11 @@
           >Large</MyButton
         >
       </div>
-      <pre class="text-sm">
-        <code id="size"></code>
-      </pre>
-    </div>
-  </div>
-</template>
 
-<script setup lang="ts">
-import MyButton from "@/components/Button/MyButton.vue";
-import { EnvelopeIcon } from "@heroicons/vue/20/solid";
-import { onMounted } from "vue";
-import hljs from "highlight.js/lib/core";
-import xml from "highlight.js/lib/languages/xml"; // For HTML/Vue template syntax
-import javascript from "highlight.js/lib/languages/javascript"; // For JavaScript
-import css from "highlight.js/lib/languages/css"; // For CSS
-
-hljs.registerLanguage("vue", xml);
-hljs.registerLanguage("javascript", javascript);
-hljs.registerLanguage("css", css);
-
-const base = `<template>
-  <div class="flex items-center gap-3 mb-5">
-    <my-button type="black">Black</my-button>
-    <my-button type="primary">Primary</my-button>
-    <my-button type="secondary">Secondary</my-button>
-    <my-button type="danger">Danger</my-button>
-    <my-button type="info">Info</my-button>
-  </div>
-</template>
-`;
-const loading = `<template>
-  <div class="flex items-center gap-3">
-    <my-button loading type="black">Black</my-button>
-    <my-button loading type="primary">Primary</my-button>
-  </div>
-</template>
-`;
-const icon = `<template>
-  <div class="flex items-center gap-3">
-    <my-button :left-icon="EnvelopeIcon" type="black">Black</my-button>
-    <my-button :right-icon="EnvelopeIcon" type="primary">Primary</my-button>
-  </div>
-</template>`;
-const size = `<template>
+      <code id="size-block" ref="sizeButtonsRef" data-lang="vue">
+        <pre>{{
+          `
+<template>
   <div class="flex items-center gap-3">
     <my-button :right-icon="EnvelopeIcon" type="black" size="small"
       >Small</my-button
@@ -98,23 +90,33 @@ const size = `<template>
       >Large</my-button
     >
   </div>
-</template>`;
+</template>
+        `.trim()
+        }}</pre>
+      </code>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { onMounted, ref } from "vue";
+import { useHighlight } from "@/modules/shiki";
+
+import MyButton from "@/components/Button/MyButton.vue";
+import { EnvelopeIcon } from "@heroicons/vue/20/solid";
+
+const baseButtonsRef = ref<HTMLElement>();
+const loadingButtonsRef = ref<HTMLElement>();
+const iconButtonsRef = ref<HTMLElement>();
+const sizeButtonsRef = ref<HTMLElement>();
 
 onMounted(() => {
-  const baseBlock = document.querySelector("pre #base");
-  const loadingBlock = document.querySelector("pre #loading");
-  const iconBlock = document.querySelector("pre #icon");
-  const sizeBlock = document.querySelector("pre #size");
-  if (baseBlock && loading && iconBlock) {
-    baseBlock.textContent = base;
-    loadingBlock.textContent = loading;
-    iconBlock.textContent = icon;
-    sizeBlock.textContent = size;
-    hljs.highlightElement(<HTMLElement>baseBlock);
-    hljs.highlightElement(<HTMLElement>loadingBlock);
-    hljs.highlightElement(<HTMLElement>iconBlock);
-    hljs.highlightElement(<HTMLElement>sizeBlock);
-  }
+  useHighlight(
+    baseButtonsRef,
+    loadingButtonsRef,
+    iconButtonsRef,
+    sizeButtonsRef
+  );
 });
 </script>
 
