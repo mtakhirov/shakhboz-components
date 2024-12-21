@@ -7,13 +7,13 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    CAside: typeof import('./src/components/Base/CAside.vue')['default']
-    CHeader: typeof import('./src/components/Base/CHeader.vue')['default']
-    CSubAside: typeof import('./src/components/Base/CSubAside.vue')['default']
-    MyButton: typeof import('./src/components/Button/MyButton.vue')['default']
-    MyInput: typeof import('./src/components/Input/MyInput.vue')['default']
-    MyTable: typeof import('./src/components/Table/MyTable.vue')['default']
-    RouterLink: typeof import('vue-router')['RouterLink']
-    RouterView: typeof import('vue-router')['RouterView']
+    CAside: (typeof import('./src/components/Base/CAside.vue'))['default'];
+    CHeader: (typeof import('./src/components/Base/CHeader.vue'))['default'];
+    CSubAside: (typeof import('./src/components/Base/CSubAside.vue'))['default'];
+    MyButton: (typeof import('./src/components/Button/MyButton.vue'))['default'];
+    MyInput: (typeof import('./src/components/Input/MyInput.vue'))['default'];
+    MyTable: (typeof import('./src/components/Table/MyTable.vue'))['default'];
+    RouterLink: (typeof import('vue-router'))['RouterLink'];
+    RouterView: (typeof import('vue-router'))['RouterView'];
   }
 }
