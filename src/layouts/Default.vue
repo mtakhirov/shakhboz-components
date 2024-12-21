@@ -14,9 +14,11 @@
     </div>
   </div>
 </template>
+
 <script setup lang="ts">
-import CSidebar from "@/components/Base/CAside.vue";
-import CHeader from "@/components/Base/CHeader.vue";
-import CSubAside from "@/components/Base/CSubAside.vue";
+import CSidebar from '@/components/Base/CAside.vue';
+import CHeader from '@/components/Base/CHeader.vue';
+import CSubAside from '@/components/Base/CSubAside.vue';
 </script>
+
 <style scoped></style>
